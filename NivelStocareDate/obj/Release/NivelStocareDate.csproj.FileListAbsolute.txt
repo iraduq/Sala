@@ -1,0 +1,9 @@
+D:\PIU\NivelStocareDate\bin\Release\NivelStocareDate.dll
+D:\PIU\NivelStocareDate\bin\Release\NivelStocareDate.pdb
+D:\PIU\NivelStocareDate\bin\Release\LibrarieModele.dll
+D:\PIU\NivelStocareDate\bin\Release\LibrarieModele.pdb
+D:\PIU\NivelStocareDate\obj\Release\NivelStocareDate.csproj.AssemblyReference.cache
+D:\PIU\NivelStocareDate\obj\Release\NivelStocareDate.csproj.CoreCompileInputs.cache
+D:\PIU\NivelStocareDate\obj\Release\NivelSto.ECC26E05.Up2Date
+D:\PIU\NivelStocareDate\obj\Release\NivelStocareDate.dll
+D:\PIU\NivelStocareDate\obj\Release\NivelStocareDate.pdb
