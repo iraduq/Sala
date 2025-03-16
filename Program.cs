@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using SalaDeFitness.LibrarieModele;
+using System.Configuration;
 using SalaDeFitness.NivelStocareDate;
 
 namespace SalaDeFitness
@@ -10,31 +10,36 @@ namespace SalaDeFitness
     {
         static void Main(string[] args)
         {
-       
-            AdministrareClienti_Memorie adminClienti = new AdministrareClienti_Memorie();
-            AdministrareAntrenori_Memorie adminAntrenori = new AdministrareAntrenori_Memorie();
-            AdministrareAngajati_Memorie adminAngajati = new AdministrareAngajati_Memorie();
-            AdministrareAbonamenteClienti_Memorie adminAbonamente = new AdministrareAbonamenteClienti_Memorie();
+            string numeFisierClienti = ConfigurationManager.AppSettings["fisierClienti"];
+            string numeFisierAntrenori = ConfigurationManager.AppSettings["fisierAntrenori"];
+            string numeFisierAngajati = ConfigurationManager.AppSettings["fisierAngajati"];
+            string numeFisierAbonamente = ConfigurationManager.AppSettings["fisierAbonamente"];
+
+            AdministrareClienti_FisierText adminClienti = new AdministrareClienti_FisierText(numeFisierClienti);
+            AdministrareAntrenori_FisierText adminAntrenori = new AdministrareAntrenori_FisierText(numeFisierAntrenori);
+            AdministrareAngajati_FisierText adminAngajati = new AdministrareAngajati_FisierText(numeFisierAngajati);
+            AdministrareAbonamenteClienti_FisierText adminAbonamente = new AdministrareAbonamenteClienti_FisierText(numeFisierAbonamente);
 
             int optiune;
             do
             {
-             
                 Console.Clear();
                 Console.WriteLine("Meniu:");
                 Console.WriteLine("1. Adauga client");
-                Console.WriteLine("2. Adauga antrenor");
-                Console.WriteLine("3. Adauga angajat");
-                Console.WriteLine("4. Adauga abonament client");
-                Console.WriteLine("5. Afiseaza clienti");
-                Console.WriteLine("6. Afiseaza antrenori");
-                Console.WriteLine("7. Afiseaza angajati");
-                Console.WriteLine("8. Afiseaza abonamente clienti");
-                Console.WriteLine("9. Cauta client dupa nume");
+                Console.WriteLine("2. Afiseaza clienti");
+                Console.WriteLine("3. Cauta client dupa nume");
+                Console.WriteLine("4. Adauga antrenor");
+                Console.WriteLine("5. Afiseaza antrenori");
+                Console.WriteLine("6. Cauta antrenor dupa nume");
+                Console.WriteLine("7. Adauga angajat");
+                Console.WriteLine("8. Afiseaza angajati");
+                Console.WriteLine("9. Cauta angajat dupa nume");
+                Console.WriteLine("10. Adauga abonament");
+                Console.WriteLine("11. Afiseaza abonamente");
+                Console.WriteLine("12. Cauta abonament dupa detalii");
                 Console.WriteLine("0. Iesire");
                 Console.Write("Alege o optiune: ");
 
-          
                 optiune = int.Parse(Console.ReadLine());
 
                 switch (optiune)
@@ -56,7 +61,29 @@ namespace SalaDeFitness
                         break;
 
                     case 2:
-                     
+                        Console.WriteLine("\nClienti:");
+                        foreach (var c in adminClienti.GetClienti())
+                        {
+                            Console.WriteLine(c.AfiseazaDetalii());
+                        }
+                        break;
+
+                    case 3:
+                        Console.WriteLine("Introduceti un nume de client pentru cautare:");
+                        string cautareNumeClient = Console.ReadLine();
+                        var clientGasit = adminClienti.GetClienti().FirstOrDefault(c => c.Nume.Equals(cautareNumeClient, StringComparison.OrdinalIgnoreCase));
+                        if (clientGasit != null)
+                        {
+                            Console.WriteLine("\nClient gasit:");
+                            Console.WriteLine(clientGasit.AfiseazaDetalii());
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nClientul nu a fost gasit.");
+                        }
+                        break;
+
+                    case 4:
                         Console.WriteLine("Introduceti datele pentru antrenor:");
                         Console.Write("Nume: ");
                         string numeAntrenor = Console.ReadLine();
@@ -68,14 +95,36 @@ namespace SalaDeFitness
                         string emailAntrenor = Console.ReadLine();
                         Console.Write("Numar telefon: ");
                         string telefonAntrenor = Console.ReadLine();
-                        Console.Write("Specializare: ");
-                        string specializareAntrenor = Console.ReadLine();
-                        Antrenor antrenor = new Antrenor(numeAntrenor, prenumeAntrenor, cnpAntrenor, emailAntrenor, telefonAntrenor, specializareAntrenor);
+                        Console.Write("Functie: ");
+                        string functieAntrenor = Console.ReadLine();
+                        Antrenor antrenor = new Antrenor(numeAntrenor, prenumeAntrenor, cnpAntrenor, emailAntrenor, telefonAntrenor, functieAntrenor);
                         adminAntrenori.AddAntrenor(antrenor);
                         break;
 
-                    case 3:
-                     
+                    case 5:
+                        Console.WriteLine("\nAntrenori:");
+                        foreach (var a in adminAntrenori.GetAntrenori())
+                        {
+                            Console.WriteLine(a.AfiseazaDetalii());
+                        }
+                        break;
+
+                    case 6:
+                        Console.WriteLine("Introduceti un nume de antrenor pentru cautare:");
+                        string cautareNumeAntrenor = Console.ReadLine();
+                        var antrenorGasit = adminAntrenori.GetAntrenori().FirstOrDefault(a => a.Nume.Equals(cautareNumeAntrenor, StringComparison.OrdinalIgnoreCase));
+                        if (antrenorGasit != null)
+                        {
+                            Console.WriteLine("\nAntrenor gasit:");
+                            Console.WriteLine(antrenorGasit.AfiseazaDetalii());
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nAntrenorul nu a fost gasit.");
+                        }
+                        break;
+
+                    case 7:
                         Console.WriteLine("Introduceti datele pentru angajat:");
                         Console.Write("Nume: ");
                         string numeAngajat = Console.ReadLine();
@@ -93,75 +142,135 @@ namespace SalaDeFitness
                         adminAngajati.AddAngajat(angajat);
                         break;
 
-                    case 4:
-                   
-                        Console.WriteLine("Introduceti datele pentru abonament client:");
-                        Abonament tipAbonament = Abonament.TipuriAbonamente[0];
-                        Console.Write("Durata abonamentului (luni): ");
-                        int durataAbonament = int.Parse(Console.ReadLine());
-                        Console.Write("Data inceperii (dd/MM/yyyy): ");
-                        DateTime dataInceput = DateTime.Parse(Console.ReadLine());
-                        Console.Write("Nume antrenor: ");
-                        string numeAntrenorAbonament = Console.ReadLine();
-                        Antrenor antrenorAbonament = adminAntrenori.GetAntrenori().FirstOrDefault(a => a.Nume.Equals(numeAntrenorAbonament, StringComparison.OrdinalIgnoreCase));
-                        AbonamentClient abonamentClient = new AbonamentClient(tipAbonament, durataAbonament, dataInceput, antrenorAbonament);
-                        adminAbonamente.AddAbonamentClient(abonamentClient);
-                        break;
-
-                    case 5:
-                   
-                        Console.WriteLine("\nClienti:");
-                        foreach (var c in adminClienti.GetClienti())
-                        {
-                            Console.WriteLine(c.AfiseazaDetalii());
-                        }
-                        break;
-
-                    case 6:
-              
-                        Console.WriteLine("\nAntrenori:");
-                        foreach (var a in adminAntrenori.GetAntrenori())
+                    case 8:
+                        Console.WriteLine("\nAngajati:");
+                        foreach (var a in adminAngajati.GetAngajati())
                         {
                             Console.WriteLine(a.AfiseazaDetalii());
                         }
                         break;
 
-                    case 7:
-                  
-                        Console.WriteLine("\nAngajati:");
-                        foreach (var ang in adminAngajati.GetAngajati())
-                        {
-                            Console.WriteLine(ang.AfiseazaDetalii());
-                        }
-                        break;
-
-                    case 8:
-                    
-                        Console.WriteLine("\nAbonamente Clienti:");
-                        foreach (var abon in adminAbonamente.GetAbonamenteClienti())
-                        {
-                            Console.WriteLine(abon.AfiseazaDetalii());
-                        }
-                        break;
-
                     case 9:
-                    
-                        Console.WriteLine("Introduceti un nume de client pentru cautare:");
-                        string cautareNume = Console.ReadLine();
-                        var clientGasit = adminClienti.GetClienti().FirstOrDefault(c => c.Nume.Equals(cautareNume, StringComparison.OrdinalIgnoreCase));
-                        if (clientGasit != null)
+                        Console.WriteLine("Introduceti un nume de angajat pentru cautare:");
+                        string cautareNumeAngajat = Console.ReadLine();
+                        var angajatGasit = adminAngajati.GetAngajati().FirstOrDefault(a => a.Nume.Equals(cautareNumeAngajat, StringComparison.OrdinalIgnoreCase));
+                        if (angajatGasit != null)
                         {
-                            Console.WriteLine("\nClient gasit:");
-                            Console.WriteLine(clientGasit.AfiseazaDetalii());
+                            Console.WriteLine("\nAngajat gasit:");
+                            Console.WriteLine(angajatGasit.AfiseazaDetalii());
                         }
                         else
                         {
-                            Console.WriteLine("\nClientul nu a fost gasit.");
+                            Console.WriteLine("\nAngajatul nu a fost gasit.");
+                        }
+                        break;
+
+                    case 10:
+                        Console.WriteLine("Introduceti datele pentru abonament:");
+                        Console.Write("Tip abonament: ");
+                        string tipAbonamentNou = Console.ReadLine();
+                        Console.Write("Numar luni: ");
+                        int numarLuniAbonament = int.Parse(Console.ReadLine());
+                        DateTime dataIncepereAbonament = DateTime.Now;
+                        DateTime dataExpirareAbonament = dataIncepereAbonament.AddMonths(numarLuniAbonament);
+
+                        Console.WriteLine($"Data inceperii abonamentului: {dataIncepereAbonament.ToString("yyyy-MM-dd")}");
+                        Console.WriteLine($"Data expirarii abonamentului: {dataExpirareAbonament.ToString("yyyy-MM-dd")}");
+
+                        Console.WriteLine("\nSelectează un antrenor existent din lista:");
+                        var listaAntrenori = adminAntrenori.GetAntrenori();
+                        for (int i = 0; i < listaAntrenori.Count(); i++)
+                        {
+                            Console.WriteLine($"{i + 1}. {listaAntrenori.ElementAt(i).AfiseazaDetalii()}");
+                        }
+
+                        Console.Write("Alege un numar de antrenor: ");
+                        int indexAntrenorSelectat = int.Parse(Console.ReadLine()) - 1; 
+                        Antrenor antrenorAbonamentSelectat = null;
+                        if (indexAntrenorSelectat >= 0 && indexAntrenorSelectat < listaAntrenori.Count())
+                        {
+                            antrenorAbonamentSelectat = listaAntrenori.ElementAt(indexAntrenorSelectat);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Numar invalid de antrenor.");
+                            break;
+                        }
+
+                    
+                        Console.WriteLine("\nSelectează un client existent din lista:");
+                        var listaClienti = adminClienti.GetClienti();
+                        for (int i = 0; i < listaClienti.Count(); i++)
+                        {
+                            Console.WriteLine($"{i + 1}. {listaClienti.ElementAt(i).AfiseazaDetalii()}");
+                        }
+
+                        Console.Write("Alege un numar de client: ");
+                        int indexClientSelectat = int.Parse(Console.ReadLine()) - 1; 
+                        Client clientAbonamentSelectat = null;
+                        if (indexClientSelectat >= 0 && indexClientSelectat < listaClienti.Count())
+                        {
+                            clientAbonamentSelectat = listaClienti.ElementAt(indexClientSelectat);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Numar invalid de client.");
+                            break;
+                        }
+
+                     
+                        Abonament abonamentNou = new Abonament(tipAbonamentNou, 50);
+                        AbonamentClient abonamentClientNou = new AbonamentClient(abonamentNou, numarLuniAbonament, dataIncepereAbonament, antrenorAbonamentSelectat, clientAbonamentSelectat);
+
+
+
+                        clientAbonamentSelectat.AbonamentClient = abonamentClientNou;
+                        
+                        clientAbonamentSelectat.Status = "Activ"; 
+
+                 
+                        adminAbonamente.AddAbonamentClient(abonamentClientNou);
+
+                        Console.WriteLine("Abonamentul a fost atribuit cu succes clientului!");
+                        break;
+
+
+
+
+
+                    case 11:
+                        var abonamente = adminAbonamente.GetAbonamenteClienti();
+                        Console.WriteLine($"Număr de abonamente: {abonamente.Count}");
+
+                        Console.WriteLine("Abonamentele existente:");
+                        foreach (var abonament in abonamente)
+                        {
+                            Console.WriteLine($"Tip: {abonament.Abonament.Tip}, Nr. Luni: {abonament.NrLuni}, " +
+                                              $"Început: {abonament.DataInceperii.ToShortDateString()}, " +
+                                              $"Expirare: {abonament.DataExpirarii.ToShortDateString()}, " +
+                                              $"Antrenor: {abonament.Antrenor.Nume}, Client: {abonament.Client.Nume}");
+                        }
+                        break;
+
+                    case 12:
+                        Console.WriteLine("Introduceti detalii pentru cautare abonament:");
+                        string detaliiAbonament = Console.ReadLine();
+                        var abonamentGasit = adminAbonamente.SearchAbonamenteClienti(detaliiAbonament);
+                        if (abonamentGasit.Count > 0)
+                        {
+                            Console.WriteLine("\nAbonamente gasite:");
+                            foreach (var ab in abonamentGasit)
+                            {
+                                Console.WriteLine(ab.AfiseazaDetalii());
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nNu au fost gasite abonamente.");
                         }
                         break;
 
                     case 0:
-                     
                         Console.WriteLine("Iesire din program...");
                         break;
 
@@ -170,11 +279,10 @@ namespace SalaDeFitness
                         break;
                 }
 
-               
-                Console.WriteLine("\nApasați orice tasta pentru a continua...");
+                Console.WriteLine("\nApasati orice tasta pentru a continua...");
                 Console.ReadKey();
 
-            } while (optiune != 0); 
+            } while (optiune != 0);
         }
     }
 }
