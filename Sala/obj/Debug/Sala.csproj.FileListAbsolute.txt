@@ -1,0 +1,12 @@
+D:\PIU\Sala\obj\Debug\Sala.csproj.AssemblyReference.cache
+D:\PIU\Sala\obj\Debug\Sala.csproj.CoreCompileInputs.cache
+D:\PIU\Sala\bin\Debug\Sala.exe.config
+D:\PIU\Sala\bin\Debug\Sala.exe
+D:\PIU\Sala\bin\Debug\Sala.pdb
+D:\PIU\Sala\bin\Debug\LibrarieModele.dll
+D:\PIU\Sala\bin\Debug\NivelStocareDate.dll
+D:\PIU\Sala\bin\Debug\LibrarieModele.pdb
+D:\PIU\Sala\bin\Debug\NivelStocareDate.pdb
+D:\PIU\Sala\obj\Debug\Sala.csproj.Up2Date
+D:\PIU\Sala\obj\Debug\Sala.exe
+D:\PIU\Sala\obj\Debug\Sala.pdb
