@@ -11,17 +11,21 @@ namespace SalaDeFitness.NivelStocareDate
         private readonly string fisierAntrenori;
 
 
-        private const int INDEX_NUME = 0;
-        private const int INDEX_PRENUME = 1;
-        private const int INDEX_CNP = 2;
-        private const int INDEX_EMAIL = 3;
-        private const int INDEX_NUMAR_TELEFON = 4;
-        private const int INDEX_SPECIALIZARE = 5;
+        private enum IndexCamps
+        {
+            NUME = 0,
+            PRENUME = 1,
+            CNP = 2,
+            EMAIL = 3,
+            NUMAR_TELEFON = 4,
+            SPECIALIZARE = 5
+        }
 
         public AdministrareAntrenori_FisierText(string numeFisier)
         {
-            this.fisierAntrenori = numeFisier;
-            Stream streamFisierText = File.Open(numeFisier, FileMode.OpenOrCreate);
+            string locatieFisierSolutie = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            this.fisierAntrenori = Path.Combine(locatieFisierSolutie, numeFisier);
+            Stream streamFisierText = File.Open(fisierAntrenori, FileMode.OpenOrCreate);
             streamFisierText.Close();
         }
 
@@ -32,6 +36,7 @@ namespace SalaDeFitness.NivelStocareDate
                 streamWriterFisierText.WriteLine(ConversieLaSir_PentruFisier(antrenor));
             }
         }
+
 
         public List<Antrenor> GetAntrenori()
         {
@@ -147,12 +152,12 @@ namespace SalaDeFitness.NivelStocareDate
         {
             string[] dateFisier = linieFisier.Split(SEPARATOR_PRINCIPAL_FISIER);
 
-            string Nume = dateFisier[INDEX_NUME];
-            string Prenume = dateFisier[INDEX_PRENUME];
-            string CNP = dateFisier[INDEX_CNP];
-            string Email = dateFisier[INDEX_EMAIL];
-            string NumarTelefon = dateFisier[INDEX_NUMAR_TELEFON];
-            string Specializare = dateFisier[INDEX_SPECIALIZARE];
+            string Nume = dateFisier[(int)IndexCamps.NUME];
+            string Prenume = dateFisier[(int)IndexCamps.PRENUME];
+            string CNP = dateFisier[(int)IndexCamps.CNP];
+            string Email = dateFisier[(int)IndexCamps.EMAIL];
+            string NumarTelefon = dateFisier[(int)IndexCamps.NUMAR_TELEFON];
+            string Specializare = dateFisier[(int)IndexCamps.SPECIALIZARE];
 
             Antrenor antrenor = new Antrenor(Nume, Prenume, CNP, Email, NumarTelefon, Specializare);
 

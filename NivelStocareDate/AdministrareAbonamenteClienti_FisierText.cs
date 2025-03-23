@@ -5,22 +5,26 @@ using SalaDeFitness.LibrarieModele;
 
 namespace SalaDeFitness.NivelStocareDate
 {
+    public enum IndexAbonamentClient
+    {
+        Abonament = 0,
+        NrLuni = 1,
+        DataInceperii = 2,
+        DataExpirarii = 3,
+        Antrenor = 4,
+        NumeClient = 5
+    }
+
     public class AdministrareAbonamenteClienti_FisierText
     {
         private const char SEPARATOR_PRINCIPAL_FISIER = ';';
         private readonly string fisierAbonamente;
 
-        private const int INDEX_ABONAMENT = 0;
-        private const int INDEX_NR_LUNI = 1;
-        private const int INDEX_DATA_INCEPERII = 2;
-        private const int INDEX_DATA_EXPIRARII = 3;
-        private const int INDEX_ANRENTOR = 4;
-        private const int INDEX_NUME_CLIENT = 5;
-
         public AdministrareAbonamenteClienti_FisierText(string numeFisier)
         {
-            this.fisierAbonamente = numeFisier;
-            Stream streamFisierText = File.Open(numeFisier, FileMode.OpenOrCreate);
+            string locatieFisierSolutie = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            this.fisierAbonamente = Path.Combine(locatieFisierSolutie, numeFisier);
+            Stream streamFisierText = File.Open(fisierAbonamente, FileMode.OpenOrCreate);
             streamFisierText.Close();
         }
 
@@ -31,6 +35,8 @@ namespace SalaDeFitness.NivelStocareDate
                 streamWriterFisierText.WriteLine(ConversieLaSir_PentruFisier(abonamentClient));
             }
         }
+
+
 
         public List<AbonamentClient> GetAbonamenteClienti()
         {
@@ -147,27 +153,22 @@ namespace SalaDeFitness.NivelStocareDate
 
         public AbonamentClient ConversieAbonamentClient_DinSirFisier(string linie)
         {
-            const int INDEX_NUMAR_LUNI = 1;
-            const int INDEX_DATA_INCEPERE = 2;
-            const int INDEX_DATA_EXPIRARE = 3;
-            const int INDEX_NUME_ANRENOR = 4;
-            const int INDEX_NUME_CLIENT = 5;
+          
 
         
             string[] date = linie.Split(';');
 
             if (date.Length < 6)
             {
-                Console.WriteLine("Date insuficiente pentru abonament.");
-                return null;
+                throw new ArgumentException("Date insuficiente pentru abonament.");
             }
 
-           
-            int numarLuni = int.Parse(date[INDEX_NUMAR_LUNI]);
-            DateTime dataIncepere = DateTime.Parse(date[INDEX_DATA_INCEPERE]);
-            DateTime dataExpirare = DateTime.Parse(date[INDEX_DATA_EXPIRARE]);
-            string numeAntrenor = date[INDEX_NUME_ANRENOR];
-            string numeClient = date[INDEX_NUME_CLIENT];
+
+            int numarLuni = int.Parse(date[(int)IndexAbonamentClient.NrLuni]);
+            DateTime dataIncepere = DateTime.Parse(date[(int)IndexAbonamentClient.DataInceperii]);
+            DateTime dataExpirare = DateTime.Parse(date[(int)IndexAbonamentClient.DataExpirarii]);
+            string numeAntrenor = date[(int)IndexAbonamentClient.Antrenor];
+            string numeClient = date[(int)IndexAbonamentClient.NumeClient];
 
 
             AdministrareAntrenori_FisierText adminAntrenori = new AdministrareAntrenori_FisierText("antrenori.txt"); 
@@ -180,7 +181,7 @@ namespace SalaDeFitness.NivelStocareDate
             }
             else
             {
-                Console.WriteLine($"Antrenorul {numeAntrenor} nu a fost gasit.");
+                throw new InvalidOperationException($"Antrenorul {numeAntrenor} nu a fost gasit.");
             }
 
        
@@ -194,7 +195,7 @@ namespace SalaDeFitness.NivelStocareDate
             }
             else
             {
-                Console.WriteLine($"Clientul {numeClient} nu a fost gasit.");
+                throw new InvalidOperationException($"Clientul {numeClient} nu a fost gasit.");
             }
 
           

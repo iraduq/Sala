@@ -7,21 +7,25 @@ namespace SalaDeFitness.NivelStocareDate
 {
     public class AdministrareAngajati_FisierText
     {
+        private enum IndexAngajat
+        {
+            Nume = 0,
+            Prenume,
+            CNP,
+            Email,
+            NumarTelefon,
+            Functie,
+            Rol
+        }
+
         private const char SEPARATOR_PRINCIPAL_FISIER = ';';
         private readonly string fisierAngajati;
 
-        private const int INDEX_NUME = 0;
-        private const int INDEX_PRENUME = 1;
-        private const int INDEX_CNP = 2;
-        private const int INDEX_EMAIL = 3;
-        private const int INDEX_NUMAR_TELEFON = 4;
-        private const int INDEX_FUNCTIE = 5;  
-        private const int INDEX_ROL = 6;
-
         public AdministrareAngajati_FisierText(string numeFisier)
         {
-            this.fisierAngajati = numeFisier;
-            Stream streamFisierText = File.Open(numeFisier, FileMode.OpenOrCreate);
+            string locatieFisierSolutie = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            this.fisierAngajati = Path.Combine(locatieFisierSolutie, numeFisier);
+            Stream streamFisierText = File.Open(fisierAngajati, FileMode.OpenOrCreate);
             streamFisierText.Close();
         }
 
@@ -32,6 +36,7 @@ namespace SalaDeFitness.NivelStocareDate
                 streamWriterFisierText.WriteLine(ConversieLaSir_PentruFisier(angajat));
             }
         }
+
 
         public List<Angajat> GetAngajati()
         {
@@ -148,13 +153,13 @@ namespace SalaDeFitness.NivelStocareDate
         {
             string[] dateFisier = linieFisier.Split(SEPARATOR_PRINCIPAL_FISIER);
 
-            string Nume = dateFisier[INDEX_NUME];
-            string Prenume = dateFisier[INDEX_PRENUME];
-            string CNP = dateFisier[INDEX_CNP];
-            string Email = dateFisier[INDEX_EMAIL];
-            string NumarTelefon = dateFisier[INDEX_NUMAR_TELEFON];
-            string Functie = dateFisier[INDEX_FUNCTIE];  
-            string Rol = dateFisier[INDEX_ROL];
+            string Nume = dateFisier[(int)IndexAngajat.Nume];
+            string Prenume = dateFisier[(int)IndexAngajat.Prenume];
+            string CNP = dateFisier[(int)IndexAngajat.CNP];
+            string Email = dateFisier[(int)IndexAngajat.Email];
+            string NumarTelefon = dateFisier[(int)IndexAngajat.NumarTelefon];
+            string Functie = dateFisier[(int)IndexAngajat.Functie];
+            string Rol = dateFisier[(int)IndexAngajat.Rol];
 
             Angajat angajat = new Angajat(Nume, Prenume, CNP, Email, NumarTelefon, Functie); 
 

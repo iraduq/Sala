@@ -14,7 +14,7 @@ namespace SalaDeFitness.LibrarieModele
             Specializare = specializare;
         }
 
-        // Override pentru a se face diferenta dintre metoda AfiseazaDetalii() din Antrenor si AfiseazaDetalii() din alte clase
+    
         public override string AfiseazaDetalii()
         {
             StringBuilder sb = new StringBuilder();

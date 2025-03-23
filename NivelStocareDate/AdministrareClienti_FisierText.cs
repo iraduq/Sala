@@ -10,18 +10,22 @@ namespace SalaDeFitness.NivelStocareDate
         private const char SEPARATOR_PRINCIPAL_FISIER = ';';
         private readonly string fisierClienti;
 
-    
-        private const int INDEX_NUME = 0;
-        private const int INDEX_PRENUME = 1;
-        private const int INDEX_CNP = 2;
-        private const int INDEX_EMAIL = 3;
-        private const int INDEX_NUMAR_TELEFON = 4;
-        private const int INDEX_ABONAMENT_INFO = 5;
+        public enum IndexuriFisier
+        {
+            NUME = 0,
+            PRENUME = 1,
+            CNP = 2,
+            EMAIL = 3,
+            NUMAR_TELEFON = 4,
+            ABONAMENT_INFO = 5
+        }
+
 
         public AdministrareClienti_FisierText(string numeFisier)
         {
-            this.fisierClienti = numeFisier;
-            Stream streamFisierText = File.Open(numeFisier, FileMode.OpenOrCreate);
+            string locatieFisierSolutie = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            this.fisierClienti = Path.Combine(locatieFisierSolutie, numeFisier);
+            Stream streamFisierText = File.Open(fisierClienti, FileMode.OpenOrCreate);
             streamFisierText.Close();
         }
 
@@ -32,6 +36,7 @@ namespace SalaDeFitness.NivelStocareDate
                 streamWriterFisierText.WriteLine(ConversieLaSir_PentruFisier(client));
             }
         }
+
 
         public List<Client> GetClienti()
         {
@@ -147,20 +152,19 @@ namespace SalaDeFitness.NivelStocareDate
 
         private Client ConversieClient_DinSirFisier(string linieFisier)
         {
+        
+
             string[] dateFisier = linieFisier.Split(SEPARATOR_PRINCIPAL_FISIER);
 
-            string Nume = dateFisier[INDEX_NUME];
-            string Prenume = dateFisier[INDEX_PRENUME];
-            string CNP = dateFisier[INDEX_CNP];
-            string Email = dateFisier[INDEX_EMAIL];
-            string NumarTelefon = dateFisier[INDEX_NUMAR_TELEFON];
+            string Nume = dateFisier[(int)IndexuriFisier.NUME];
+            string Prenume = dateFisier[(int)IndexuriFisier.PRENUME];
+            string CNP = dateFisier[(int)IndexuriFisier.CNP];
+            string Email = dateFisier[(int)IndexuriFisier.EMAIL];
+            string NumarTelefon = dateFisier[(int)IndexuriFisier.NUMAR_TELEFON];
 
             Client client = new Client(Nume, Prenume, CNP, Email, NumarTelefon);
 
-            if (dateFisier.Length > INDEX_ABONAMENT_INFO && dateFisier[INDEX_ABONAMENT_INFO] != "null")
-            {
-                //  informatii despre abonament
-            }
+         
 
             return client;
         }
