@@ -1,0 +1,113 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\PIU\\Sala\\Sala.csproj": {}
+  },
+  "projects": {
+    "D:\\PIU\\LibrarieModele\\LibrarieModele.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\PIU\\LibrarieModele\\LibrarieModele.csproj",
+        "projectName": "LibrarieModele",
+        "projectPath": "D:\\PIU\\LibrarieModele\\LibrarieModele.csproj",
+        "UsingMicrosoftNETSdk": false,
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "D:\\PIU\\NivelStocareDate\\NivelStocareDate.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\PIU\\NivelStocareDate\\NivelStocareDate.csproj",
+        "projectName": "NivelStocareDate",
+        "projectPath": "D:\\PIU\\NivelStocareDate\\NivelStocareDate.csproj",
+        "UsingMicrosoftNETSdk": false,
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "D:\\PIU\\LibrarieModele\\LibrarieModele.csproj": {
+                "projectPath": "D:\\PIU\\LibrarieModele\\LibrarieModele.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "D:\\PIU\\Sala\\Sala.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\PIU\\Sala\\Sala.csproj",
+        "projectName": "Sala",
+        "projectPath": "D:\\PIU\\Sala\\Sala.csproj",
+        "packagesPath": "C:\\Users\\radui\\.nuget\\packages\\",
+        "outputPath": "D:\\PIU\\Sala\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "UsingMicrosoftNETSdk": false,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\radui\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "D:\\PIU\\LibrarieModele\\LibrarieModele.csproj": {
+                "projectPath": "D:\\PIU\\LibrarieModele\\LibrarieModele.csproj"
+              },
+              "D:\\PIU\\NivelStocareDate\\NivelStocareDate.csproj": {
+                "projectPath": "D:\\PIU\\NivelStocareDate\\NivelStocareDate.csproj"
+              }
+            }
+          }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "dependencies": {
+            "MetroFramework": {
+              "target": "Package",
+              "version": "[1.2.0.3, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-arm64": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "jhs0zDM8uR8=",
+  "success": true,
+  "projectFilePath": "D:\\PIU\\Sala\\Sala.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\radui\\.nuget\\packages\\metroframework\\1.2.0.3\\metroframework.1.2.0.3.nupkg.sha512",
+    "C:\\Users\\radui\\.nuget\\packages\\metroframework.design\\1.2.0.3\\metroframework.design.1.2.0.3.nupkg.sha512",
+    "C:\\Users\\radui\\.nuget\\packages\\metroframework.fonts\\1.2.0.3\\metroframework.fonts.1.2.0.3.nupkg.sha512",
+    "C:\\Users\\radui\\.nuget\\packages\\metroframework.runtime\\1.2.0.3\\metroframework.runtime.1.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

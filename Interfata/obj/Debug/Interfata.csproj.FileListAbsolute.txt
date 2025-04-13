@@ -1,0 +1,20 @@
+D:\PIU\Interfata\bin\Debug\Interfata.exe.config
+D:\PIU\Interfata\bin\Debug\Interfata.exe
+D:\PIU\Interfata\bin\Debug\Interfata.pdb
+D:\PIU\Interfata\obj\Debug\Interfata.csproj.AssemblyReference.cache
+D:\PIU\Interfata\obj\Debug\Interfata.Properties.Resources.resources
+D:\PIU\Interfata\obj\Debug\Interfata.csproj.GenerateResource.cache
+D:\PIU\Interfata\obj\Debug\Interfata.csproj.CoreCompileInputs.cache
+D:\PIU\Interfata\obj\Debug\Interfata.exe
+D:\PIU\Interfata\obj\Debug\Interfata.pdb
+D:\PIU\Interfata\bin\Debug\LibrarieModele.dll
+D:\PIU\Interfata\bin\Debug\NivelStocareDate.dll
+D:\PIU\Interfata\bin\Debug\Sala.exe
+D:\PIU\Interfata\bin\Debug\LibrarieModele.pdb
+D:\PIU\Interfata\bin\Debug\NivelStocareDate.pdb
+D:\PIU\Interfata\bin\Debug\Sala.pdb
+D:\PIU\Interfata\bin\Debug\Sala.exe.config
+D:\PIU\Interfata\obj\Debug\Interfata.csproj.Up2Date
+D:\PIU\Interfata\bin\Debug\MetroFramework.dll
+D:\PIU\Interfata\bin\Debug\MetroFramework.Fonts.dll
+D:\PIU\Interfata\bin\Debug\MetroSet UI.dll

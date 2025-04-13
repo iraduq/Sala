@@ -1,0 +1,12 @@
+D:\PIU\LibrarieModele\bin\Debug\LibrarieModele.dll
+D:\PIU\LibrarieModele\bin\Debug\LibrarieModele.pdb
+D:\PIU\LibrarieModele\obj\Debug\LibrarieModele.csproj.AssemblyReference.cache
+D:\PIU\LibrarieModele\obj\Debug\LibrarieModele.csproj.CoreCompileInputs.cache
+D:\PIU\LibrarieModele\obj\Debug\LibrarieModele.dll
+D:\PIU\LibrarieModele\obj\Debug\LibrarieModele.pdb
+C:\Users\radui\Desktop\Sala-main\LibrarieModele\bin\Debug\LibrarieModele.dll
+C:\Users\radui\Desktop\Sala-main\LibrarieModele\bin\Debug\LibrarieModele.pdb
+C:\Users\radui\Desktop\Sala-main\LibrarieModele\obj\Debug\LibrarieModele.csproj.AssemblyReference.cache
+C:\Users\radui\Desktop\Sala-main\LibrarieModele\obj\Debug\LibrarieModele.csproj.CoreCompileInputs.cache
+C:\Users\radui\Desktop\Sala-main\LibrarieModele\obj\Debug\LibrarieModele.dll
+C:\Users\radui\Desktop\Sala-main\LibrarieModele\obj\Debug\LibrarieModele.pdb
