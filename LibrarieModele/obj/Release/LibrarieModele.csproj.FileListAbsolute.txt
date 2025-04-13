@@ -1,6 +1,0 @@
-D:\PIU\LibrarieModele\bin\Release\LibrarieModele.dll
-D:\PIU\LibrarieModele\bin\Release\LibrarieModele.pdb
-D:\PIU\LibrarieModele\obj\Release\LibrarieModele.csproj.AssemblyReference.cache
-D:\PIU\LibrarieModele\obj\Release\LibrarieModele.csproj.CoreCompileInputs.cache
-D:\PIU\LibrarieModele\obj\Release\LibrarieModele.dll
-D:\PIU\LibrarieModele\obj\Release\LibrarieModele.pdb
